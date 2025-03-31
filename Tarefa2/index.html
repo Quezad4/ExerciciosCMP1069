@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+<body>
+    <h1>Cadastro de Funcionários</h1>
+    <hr>
+    <div>
+        <p>
+            Nome
+            <input type="text" id="nome">
+        </p>
+        <p>
+            Idade
+            <input type="number" id="idade">
+        </p>
+        <p>
+            Cargo
+            <input type="text" id="cargo">
+        </p>
+        <p>
+            Salário
+            <input type="number" id="salario">
+        </p>
+
+        <button id = "botaoCadastrar" >Cadastrar</button>
+        <table id="tabela">
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Cargo</th>
+                <th>Salário</th>
+            </tr>
+        </table>
+        <hr>
+        <h2>Relatório</h2>
+        <input type="submit" value="Gerar Relatório" id="relatorio">
+        <ul>
+            <li> Funcionários com Salário superior a 5000
+                <p id="salario5000"></p>
+            </li>
+            <li > Média Salarial
+                <p id= "mediaSalario"></p>
+            </li>
+            <li > Cargos Unicos
+                <p id="cargoUnico"></p>
+            </li>
+            <li > Nomes em Maiusculo
+                <p id="maisculo"></p>
+            </li>
+        </ul>
+    </div>
+
+    <script src="/Tarefa2/main.js"></script>
+</body>
+</html>
