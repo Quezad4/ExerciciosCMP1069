@@ -104,7 +104,7 @@ botaoGerarRelatorio.addEventListener("click", () => {
     document.getElementById("cargoUnico").textContent = resultadoCargoUnico
     
 
-
+    localStorage.
     //NOME MAISCULO
     resultadoNomeMaisculo = arrayFuncionarios.map(funcionario => funcionario.getNome().toUpperCase()).join(", ")
     document.getElementById("maisculo").textContent = resultadoNomeMaisculo
