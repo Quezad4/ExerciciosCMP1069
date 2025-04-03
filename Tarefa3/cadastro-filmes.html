@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinequecas</title>
     <link href="/Tarefa3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="bg-dark">
     
-    <nav class="navbar navbar-expand-lg bg-secondary px-4">
+    <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
         <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
             <!-- Logo -->
             <a href="index.html" class="navbar-brand">
@@ -19,27 +23,80 @@
             <div>
                 <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link text-dark ">Home</a>
+                        <a href="index.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark ">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-filmes.html" class="nav-link text-dark active">Cadastrar Filmes</a>
+                        <a href="cadastro-filmes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark active">Cadastrar Filmes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-salas.html" class="nav-link text-dark">Cadastrar Salas</a>
+                        <a href="cadastro-salas.html"  style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Salas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Cadastrar Sessões</a>
+                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Sessões</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Venda de Ingresso</a>
+                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de Ingresso</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">Listagem de Sessões</a>
+                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de Sessões</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="container d-flex flex-column">
+
+        <h2 class="text-white mb-5 text-minhafonte">Cadastro de Filmes</h2>
+        
+        <form class="d-flex flex-column">
+            <div class="form-group mb-4 ">
+                <label class="text-white h4 " for="titulo-filme">Título</label>
+                <input type="text" class="form-control" id="titulo-filme" placeholder= "Digite o nome do filme " required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="text-white h4 " for="descricao-filme">Descrição</label>
+                <textarea  class= "form-control" id="descricao-filme" placeholder="Escreva a descrição do filme" row="3"></textarea>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="text-white h4" for="genero-filme">Gênero</label>
+                <select class="form-control" id="genero-filme" >
+                    <option >Opcão 1</option>
+                    <option >Opcão 2</option>
+                    <option >Opcão 3</option>
+                    <option >Opcão 4</option>
+                    <option >Opcão 5</option>
+                    <option >Opcão 6</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="text-white h4" for="classificacao-filme">Classificação Indicativa</label>
+                <select class="form-control" id="classificacao-filme" >
+                    <option >Opcão 1</option>
+                    <option >Opcão 2</option>
+                    <option >Opcão 3</option>
+                    <option >Opcão 4</option>
+                    <option >Opcão 5</option>
+                    <option >Opcão 6</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="text-white h4" for="duracao-filme">Duração</label>
+                <input type="number" class="form-control " id="duracao-filme" placeholder="Digite a duração do filme">
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="text-white h4" for="data-filme">Data de Estreia</label>
+                <input type="date" class="form-control " id="data-filme">
+            </div>
+            
+        </form>
+
+    </div>
 
 
     
