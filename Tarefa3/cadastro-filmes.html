@@ -32,7 +32,7 @@
                         <a href="cadastro-salas.html"  style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Salas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Sessões</a>
+                        <a href="cadastro-sessoes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Sessões</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de Ingresso</a>
@@ -49,7 +49,7 @@
 
         <h2 class="text-white mb-5 text-minhafonte">Cadastro de Filmes</h2>
         
-        <form class="d-flex flex-column">
+        <form class="d-flex flex-column mb-5">
             <div class="form-group mb-4 ">
                 <label class="text-white h4 " for="titulo-filme">Título</label>
                 <input type="text" class="form-control" id="titulo-filme" placeholder= "Digite o nome do filme " required>
@@ -57,43 +57,53 @@
 
             <div class="form-group mb-4">
                 <label class="text-white h4 " for="descricao-filme">Descrição</label>
-                <textarea  class= "form-control" id="descricao-filme" placeholder="Escreva a descrição do filme" row="3"></textarea>
+                <textarea  class= "form-control" id="descricao-filme" placeholder="Escreva a descrição do filme" row="3" required></textarea>
             </div>
 
             <div class="form-group mb-4">
                 <label class="text-white h4" for="genero-filme">Gênero</label>
                 <select class="form-control" id="genero-filme" >
-                    <option >Opcão 1</option>
-                    <option >Opcão 2</option>
-                    <option >Opcão 3</option>
-                    <option >Opcão 4</option>
-                    <option >Opcão 5</option>
-                    <option >Opcão 6</option>
+                    <option >🎭 Drama</option>
+                    <option >😂 Comédia</option>
+                    <option >🎬 Ação</option>
+                    <option >😱 Terror</option>
+                    <option >🕵️ Suspense</option>
+                    <option >🌌 Ficção Científica</option>
+                    <option >🧙 Fantasia </option>
+                    <option >💖 Romance</option>
+                    <option >🤠 Faroeste</option>
+                    <option >👶 Animação</option>
+                    <option >🎸 Musical</option>
+                    <option >🔍 Policial/Crime</option>
                 </select>
             </div>
 
             <div class="form-group mb-4">
                 <label class="text-white h4" for="classificacao-filme">Classificação Indicativa</label>
                 <select class="form-control" id="classificacao-filme" >
-                    <option >Opcão 1</option>
-                    <option >Opcão 2</option>
-                    <option >Opcão 3</option>
-                    <option >Opcão 4</option>
-                    <option >Opcão 5</option>
-                    <option >Opcão 6</option>
+                    <option >Livre</option>
+                    <option >10 anos</option>
+                    <option >12 anos</option>
+                    <option >14 anos</option>
+                    <option >16 anos</option>
+                    <option >18 anos</option>
                 </select>
             </div>
 
             <div class="form-group mb-4">
                 <label class="text-white h4" for="duracao-filme">Duração</label>
-                <input type="number" class="form-control " id="duracao-filme" placeholder="Digite a duração do filme">
+                <input type="number" class="form-control " id="duracao-filme" placeholder="Digite a duração do filme" required>
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-5">
                 <label class="text-white h4" for="data-filme">Data de Estreia</label>
-                <input type="date" class="form-control " id="data-filme">
+                <input type="date" class="form-control " id="data-filme" required>
             </div>
-            
+
+            <button type="submit" class="bg-secondary rounded text-white ">
+                CADASTRAR FILME
+            </button>
+
         </form>
 
     </div>
