@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body class="bg-dark">
-    
+
     <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
         <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
             <!-- Logo -->
@@ -23,22 +25,28 @@
             <div>
                 <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
                     <li class="nav-item">
-                        <a href="index.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark ">Home</a>
+                        <a href="index.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-filmes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark active">Cadastrar Filmes</a>
+                        <a href="cadastro-filmes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark active">Cadastrar Filmes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-salas.html"  style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Salas</a>
+                        <a href="cadastro-salas.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Salas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-sessoes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Sessões</a>
+                        <a href="cadastro-sessoes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Sessões</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de Ingresso</a>
+                        <a href="#" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de
+                            Ingresso</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de Sessões</a>
+                        <a href="#" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de
+                            Sessões</a>
                     </li>
                 </ul>
             </div>
@@ -47,74 +55,103 @@
 
     <div class="container d-flex flex-column">
 
-        <h2 class="text-white mb-5 text-minhafonte">Cadastro de Filmes</h2>
-        
-        <form class="d-flex flex-column mb-5">
-            <div class="form-group mb-4 ">
-                <label class="text-white h4 " for="titulo-filme">Título</label>
-                <input type="text" class="form-control" id="titulo-filme" placeholder= "Digite o nome do filme " required>
+        <h2 class="text-white mb-3 text-minhafonte">Cadastro de Filmes</h2>
+        <button class="mb-5 rounded" data-bs-toggle="modal" data-bs-target="#modalFilmes">Cadastrar Filmes</button>
+
+        <table class="table table-striped text-white" id="tabela-filmes">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Gênero</th>
+                <th>Classificação</th>
+                <th>Duração</th>
+                <th>Data Estreia</th>
+                <th>Editar/Excluir</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalFilmes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title" id="idModalFilmeTitulo">Cadastrar Novo Filme</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="titulo-filme">Título</label>
+                            <input type="text" class="form-control" id="titulo-filme"
+                                placeholder="Digite o nome do filme " required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="descricao-filme">Descrição</label>
+                            <textarea class="form-control" id="descricao-filme"
+                                placeholder="Escreva a descrição do filme" row="3" required></textarea>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="genero-filme">Gênero</label>
+                            <select class="form-control" id="genero-filme">
+                                <option>🎭 Drama</option>
+                                <option>😂 Comédia</option>
+                                <option>🎬 Ação</option>
+                                <option>😱 Terror</option>
+                                <option>🕵️ Suspense</option>
+                                <option>🌌 Ficção Científica</option>
+                                <option>🧙 Fantasia </option>
+                                <option>💖 Romance</option>
+                                <option>🤠 Faroeste</option>
+                                <option>👶 Animação</option>
+                                <option>🎸 Musical</option>
+                                <option>🔍 Policial/Crime</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="classificacao-filme">Classificação Indicativa</label>
+                            <select class="form-control" id="classificacao-filme">
+                                <option>Livre</option>
+                                <option>10 anos</option>
+                                <option>12 anos</option>
+                                <option>14 anos</option>
+                                <option>16 anos</option>
+                                <option>18 anos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="duracao-filme">Duração</label>
+                            <input type="number" class="form-control " id="duracao-filme"
+                                placeholder="Digite a duração do filme" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="data-filme">Data de Estreia</label>
+                            <input type="date" class="form-control " id="data-filme" required>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarFilme">Salvar</button>
+                </div>
             </div>
-
-            <div class="form-group mb-4">
-                <label class="text-white h4 " for="descricao-filme">Descrição</label>
-                <textarea  class= "form-control" id="descricao-filme" placeholder="Escreva a descrição do filme" row="3" required></textarea>
-            </div>
-
-            <div class="form-group mb-4">
-                <label class="text-white h4" for="genero-filme">Gênero</label>
-                <select class="form-control" id="genero-filme" >
-                    <option >🎭 Drama</option>
-                    <option >😂 Comédia</option>
-                    <option >🎬 Ação</option>
-                    <option >😱 Terror</option>
-                    <option >🕵️ Suspense</option>
-                    <option >🌌 Ficção Científica</option>
-                    <option >🧙 Fantasia </option>
-                    <option >💖 Romance</option>
-                    <option >🤠 Faroeste</option>
-                    <option >👶 Animação</option>
-                    <option >🎸 Musical</option>
-                    <option >🔍 Policial/Crime</option>
-                </select>
-            </div>
-
-            <div class="form-group mb-4">
-                <label class="text-white h4" for="classificacao-filme">Classificação Indicativa</label>
-                <select class="form-control" id="classificacao-filme" >
-                    <option >Livre</option>
-                    <option >10 anos</option>
-                    <option >12 anos</option>
-                    <option >14 anos</option>
-                    <option >16 anos</option>
-                    <option >18 anos</option>
-                </select>
-            </div>
-
-            <div class="form-group mb-4">
-                <label class="text-white h4" for="duracao-filme">Duração</label>
-                <input type="number" class="form-control " id="duracao-filme" placeholder="Digite a duração do filme" required>
-            </div>
-
-            <div class="form-group mb-5">
-                <label class="text-white h4" for="data-filme">Data de Estreia</label>
-                <input type="date" class="form-control " id="data-filme" required>
-            </div>
-
-            <button type="submit" class="bg-secondary rounded text-white ">
-                CADASTRAR FILME
-            </button>
-
-        </form>
-
+        </div>
     </div>
 
 
-    
 
 
 
 
-    
+
+    <script type="module" src="/Tarefa3/controller/filme-controller.js"></script>
     <script src="/Tarefa3/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
