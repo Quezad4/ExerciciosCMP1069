@@ -145,6 +145,81 @@
     </div>
 
 
+    <!-- MODAL EDITAR FILMES-->
+    <div class="modal fade" id="modalEditarFilmes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title" id="idModalFilmeTitulo">Editar</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="titulo-filme-editar">Título</label>
+                            <input type="text" class="form-control" id="titulo-filme-editar" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="descricao-filme">Descrição</label>
+                            <textarea class="form-control" id="descricao-filme"
+                                placeholder="Escreva a descrição do filme" row="3" required></textarea>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="genero-filme-editar">Gênero</label>
+                            <select class="form-control" id="genero-filme-editar">
+                                <option>🎭 Drama</option>
+                                <option>😂 Comédia</option>
+                                <option>🎬 Ação</option>
+                                <option>😱 Terror</option>
+                                <option>🕵️ Suspense</option>
+                                <option>🌌 Ficção Científica</option>
+                                <option>🧙 Fantasia </option>
+                                <option>💖 Romance</option>
+                                <option>🤠 Faroeste</option>
+                                <option>👶 Animação</option>
+                                <option>🎸 Musical</option>
+                                <option>🔍 Policial/Crime</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="classificacao-filme-editar">Classificação Indicativa</label>
+                            <select class="form-control" id="classificacao-filme-editar">
+                                <option>Livre</option>
+                                <option>10 anos</option>
+                                <option>12 anos</option>
+                                <option>14 anos</option>
+                                <option>16 anos</option>
+                                <option>18 anos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="duracao-filme">Duração</label>
+                            <input type="number" class="form-control " id="duracao-filme-editar"
+                                placeholder="Digite a duração do filme" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="data-filme">Data de Estreia</label>
+                            <input type="date" class="form-control " id="data-filme-editar" required>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarFilmeEditado">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 

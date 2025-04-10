@@ -1,10 +1,10 @@
 export class Filme{
-    constructor(id, titulo, genero, classificacao, duaracao, dataEstreia){
+    constructor(id, titulo, genero, classificacao, duracao, dataEstreia){
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.classificacao = classificacao;
-        this.duaracao = duaracao;
+        this.duaracao = duracao;
         this.dataEstreia = dataEstreia;
     }
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
