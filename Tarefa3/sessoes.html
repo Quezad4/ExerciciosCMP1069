@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinequecas</title>
+    <link href="/Tarefa3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+
+<body class="bg-dark text-white">
+
+  <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
+      <!-- Logo -->
+      <a href="index.html" class="navbar-brand">
+        <img src="/Tarefa3/assets/logo2.png" alt="Logo" width="91" height="65">
+      </a>
+
+      <!-- Menu -->
+      <div>
+        <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
+          <li class="nav-item">
+            <a href="index.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark ">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="cadastro-filmes.html" style='font-family: "Boldonse", system-ui;'
+              class="nav-link text-dark">Cadastrar Filmes</a>
+          </li>
+          <li class="nav-item">
+            <a href="cadastro-salas.html" style='font-family: "Boldonse", system-ui;'
+              class="nav-link text-dark">Cadastrar Salas</a>
+          </li>
+          <li class="nav-item">
+            <a href="cadastro-sessoes.html" style='font-family: "Boldonse", system-ui;'
+              class="nav-link text-dark ">Cadastrar Sessões</a>
+          </li>
+          <li class="nav-item">
+            <a href="venda-ingressos.html" style='font-family: "Boldonse", system-ui;'
+              class="nav-link text-dark ">Venda de
+              Ingresso</a>
+          </li>
+          <li class="nav-item">
+            <a href="sessoes.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark active">Listagem de
+              Sessões</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h1 class="text-center mb-5 text-minhafonte">Sessões Disponíveis</h1>
+    <div class="row" id="cards-container">
+      <!-- Os cards serão adicionados aqui via JavaScript -->
+    </div>
+  </div>
+
+  <script type="module" src="/Tarefa3/controller/sessoes.js"></script>
+</body>
+
+</html>

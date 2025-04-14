@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,35 +11,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body class="bg-dark">
-    
+
     <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
         <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
-            
+
             <a href="index.html" class="navbar-brand">
                 <img src="/Tarefa3/assets/logo2.png" alt="Logo" width="91" height="65">
             </a>
 
-            
+
             <div>
                 <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
                     <li class="nav-item">
-                        <a href="index.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark ">Home</a>
+                        <a href="index.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-filmes.html" style= 'font-family: "Boldonse", system-ui;'  class="nav-link text-dark ">Cadastrar Filmes</a>
+                        <a href="cadastro-filmes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Cadastrar Filmes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-salas.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link active text-dark">Cadastrar Salas</a>
+                        <a href="cadastro-salas.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link active text-dark">Cadastrar Salas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-sessoes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Sessões</a>
+                        <a href="cadastro-sessoes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Sessões</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de Ingresso</a>
+                        <a href="venda-ingressos.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de
+                            Ingresso</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de Sessões</a>
+                        <a href="sessoes.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de
+                            Sessões</a>
                     </li>
                 </ul>
             </div>
@@ -48,41 +56,109 @@
 
     <div class="container d-flex flex-column">
 
-        <h2 class="text-white mb-5 text-minhafonte">Cadastro de Salas</h2>
-        
-        <form class="d-flex flex-column mb-5">
-            <div class="form-group mb-4 ">
-                <label class="text-white h4 " for="nome-sala">Nome</label>
-                <input type="text" class="form-control" id="nome-sala" placeholder= "Digite o nome da sala " required>
+        <h2 class="text-white mb-3 text-minhafonte">Cadastro de Salas</h2>
+        <button class="mb-5 rounded" data-bs-toggle="modal" data-bs-target="#modalSalas">Cadastrar Sala</button>
+
+        <table class="table table-striped text-white" id="tabela-salas">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Capacidade</th>
+                <th>Tipo</th>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="modal fade" id="modalSalas">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title" id="idModalFilmeTitulo">Cadastrar Nova Sala</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="nome-sala">Nome</label>
+                            <input type="text" class="form-control" id="nome-sala" placeholder="Digite o nome da sala "
+                                required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="capacidade-sala">Capacidade</label>
+                            <input type="number" class="form-control " id="capacidade-sala"
+                                placeholder="Digite a capacidade da sala" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="tipo-sala">Tipo</label>
+                            <select class="form-control" id="tipo-sala">
+                                <option>2D</option>
+                                <option>3D</option>
+                                <option>IMAX</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarSala">Salvar</button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="form-group mb-4">
-                <label class="text-white h4" for="capacidade-sala">Capacidade</label>
-                <input type="number" class="form-control " id="capacidade-sala" placeholder="Digite a capacidade da sala" required>
+
+
+    <div class="modal fade" id="modalEditarSalas">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title">Editar Sala</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="nome-sala-editar">Nome</label>
+                            <input type="text" class="form-control" id="nome-sala-editar" placeholder="Digite o nome da sala "
+                                required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="capacidade-sala-editar">Capacidade</label>
+                            <input type="number" class="form-control " id="capacidade-sala-editar"
+                                placeholder="Digite a capacidade da sala" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="tipo-sala-editar">Tipo</label>
+                            <select class="form-control" id="tipo-sala-editar">
+                                <option>2D</option>
+                                <option>3D</option>
+                                <option>IMAX</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarSalaEditado">Salvar</button>
+                </div>
             </div>
-
-            <div class="form-group mb-4">
-                <label class="text-white h4" for="tipo-sala">Tipo</label>
-                <select class="form-control" id="tipo-sala" >
-                    <option >2D</option>
-                    <option >3D</option>
-                    <option >IMAX</option>
-                </select>
-            </div>
-
-
-            <button type="submit" class="bg-secondary rounded text-white ">
-                CADASTRAR SALA
-            </button>
-
-        </form>
-
+        </div>
     </div>
 
 
 
 
-    
+    <script type="module" src="/Tarefa3/controller/sala-controller.js"></script>
     <script src="/Tarefa3/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

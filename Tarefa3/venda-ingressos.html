@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinequecas</title>
+    <link href="/Tarefa3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
+        <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
+            <!-- Logo -->
+            <a href="index.html" class="navbar-brand">
+                <img src="/Tarefa3/assets/logo2.png" alt="Logo" width="91" height="65">
+            </a>
+
+            <!-- Menu -->
+            <div>
+                <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
+                    <li class="nav-item">
+                        <a href="index.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cadastro-filmes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cadastro-salas.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cadastro-sessoes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Cadastrar Sessões</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="venda-ingressos.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark active">Venda de
+                            Ingresso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="sessoes.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de
+                            Sessões</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container d-flex flex-column">
+
+        <h2 class="text-white mb-3 text-minhafonte">Seus Ingressos</h2>
+        <table class="table table-striped text-white" id="tabela-ingressos">
+            <tr>
+                <th>ID</th>
+                <th>Filme</th>
+                <th>Horário</th>
+                <th>Tipo</th>
+                <th>Idioma</th>
+                <th>ID da Sessão</th>
+                <th>Nome do Cliente</th>
+                <th>CPF</th>
+                <th>Assento</th>
+                <th>Pagamento</th>
+            </tr>
+        </table>
+        <button class="mb-5 rounded bg-success" data-bs-toggle="modal" data-bs-target="#modalIngressos">Comprar
+            Ingresso</button>
+    </div>
+
+
+    <div class="modal fade" id="modalIngressos">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title">Comprar Ingresso</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="filme-ingresso">Filme</label>
+                            <select class="form-control" id="filme-ingresso">
+                                <option value="" disabled selected>Selecione o filme</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="hora-ingresso">Horário</label>
+                            <select class="form-control" id="hora-ingresso">
+                                <option value="" disabled selected>Selecione o horário</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="tipo-sessao-ingresso">Tipo da sessão</label>
+                            <select class="form-control" id="tipo-sessao-ingresso">
+                                <option value="" disabled selected>Selecione o tipo da sessão</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="idioma-sessao-ingresso">Idioma</label>
+                            <select class="form-control" id="idioma-sessao-ingresso">
+                                <option value="" disabled selected>Selecione o idioma da sessão</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="nomecompleto-ingresso">Nome Completo</label>
+                            <input type="text" class="form-control" id="nomecompleto-ingresso" placeholder="Digite o seu Nome"
+                                required>
+                        </div>
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="cpf-ingresso">CPF</label>
+                            <input type="text" class="form-control" id="cpf-ingresso" placeholder="Digite o seu CPF"
+                                required>
+                        </div>
+                        <div class="form-group mb-4 ">
+                            <label class="text-white h4 " for="assento-ingresso">Assento</label>
+                            <input type="text" class="form-control" id="assento-ingresso" placeholder="Ex: A10"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white h4 " for="pagamento-ingresso">Pagamento</label>
+                            <select class="form-control" id="pagamento-ingresso">
+                                <option>PIX</option>
+                                <option>Cartão</option>
+                                <option>Dinheiro</option>
+                            </select>
+                        </div>
+                        
+
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarIngresso">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script type="module" src="/Tarefa3/controller/ingressos-controller.js"></script>
+    <script src="/Tarefa3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

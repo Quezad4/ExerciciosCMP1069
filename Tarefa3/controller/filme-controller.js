@@ -120,7 +120,7 @@ class FilmeController {
 
 }
 
-let teste = new FilmeController()
+let controle = new FilmeController()
 
 
 

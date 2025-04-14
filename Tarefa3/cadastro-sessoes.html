@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body class="bg-dark">
-    
+
     <nav class="navbar navbar-expand-lg bg-secondary px-4 mb-5">
         <div class="container-fluid d-flex justify-content-center align-items-center gap-4">
             <!-- Logo -->
@@ -23,34 +25,165 @@
             <div>
                 <ul class="navbar-nav nav-underline d-flex flex-sm-row gap-4">
                     <li class="nav-item">
-                        <a href="index.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark ">Home</a>
+                        <a href="index.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark ">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-filmes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Filmes</a>
+                        <a href="cadastro-filmes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Filmes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-salas.html"  style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Cadastrar Salas</a>
+                        <a href="cadastro-salas.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark">Cadastrar Salas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastro-sessoes.html" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark active">Cadastrar Sessões</a>
+                        <a href="cadastro-sessoes.html" style='font-family: "Boldonse", system-ui;'
+                            class="nav-link text-dark active">Cadastrar Sessões</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de Ingresso</a>
+                        <a href="venda-ingressos.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Venda de
+                            Ingresso</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" style= 'font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de Sessões</a>
+                        <a href="sessoes.html" style='font-family: "Boldonse", system-ui;' class="nav-link text-dark">Listagem de
+                            Sessões</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    
+    <div class="container d-flex flex-column">
+
+        <h2 class="text-white mb-3 text-minhafonte">Cadastro de Sessões</h2>
+        <button class="mb-5 rounded" data-bs-toggle="modal" data-bs-target="#modalSessoes">Cadastrar Sessão</button>
+
+        <table class="table table-striped text-white" id="tabela-sessoes">
+            <tr>
+                <th>ID</th>
+                <th>Fime</th>
+                <th>Sala</th>
+                <th>Date e Hora</th>
+                <th>Preço</th>
+                <th>Idioma</th>
+            </tr>
+        </table>
+    </div>
 
 
-    
+    <div class="modal fade" id="modalSessoes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary ">
+                    <h5 class="modal-title">Cadastrar Nova Sessão</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="filme-sessao">Filme</label>
+                            <select class="form-control" id="filme-sessao">
+                                <option value="" disabled selected>Selecione o filme</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="sala-sessao">Sala</label>
+                            <select class="form-control" id="sala-sessao">
+                                <option value="" disabled selected>Selecione a sala</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="dataHora-sessao">Data e Hora</label>
+                            <input type="datetime-local" class="form-control" id="dataHora-sessao"
+                                placeholder="Digite a data e a Hora " required>
+                        </div>
 
-    
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="preco-sessao">Preço</label>
+                            <span>R$</span>
+                            <input class="form-control" type="number" id="preco-sessao" name="preco" step="0.01" min="0"
+                                placeholder="Digite o preço da sessão">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="idioma-sessao">Idioma</label>
+                            <select class="form-control" id="idioma-sessao">
+                                <option>Legendado</option>
+                                <option>Dublado</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarSessao">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="modalEditarSessoes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-secondary">
+                    <h5 class="modal-title">Editar Sessão</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form class="d-flex flex-column mb-5">
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="filme-sessao-editar">Filme</label>
+                            <select class="form-control" id="filme-sessao-editar">
+                                <option value="" disabled selected>Selecione o filme</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="sala-sessao-editar">Sala</label>
+                            <select class="form-control" id="sala-sessao-editar">
+                                <option value="" disabled selected>Selecione a sala</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="text-white h4 " for="dataHora-sessao-editar">Data e Hora</label>
+                            <input type="datetime-local" class="form-control" id="dataHora-sessao-editar"
+                                placeholder="Digite a data e a Hora " required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="text-white h4" for="preco-sessao-editar">Preço</label>
+                            <span>R$</span>
+                            <input class="form-control" type="number" id="preco-sessao-editar" name="preco" step="0.01" min="0"
+                                placeholder="Digite o preço da sessão">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white h4" for="idioma-sessao-editar">Idioma</label>
+                            <select class="form-control" id="idioma-sessao-editar">
+                                <option>Legendado</option>
+                                <option>Dublado</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-secondary">
+                    <button type="button" class="btn bg-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnSalvarSessaoEditado">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script type="module" src="/Tarefa3/controller/sessao-controller.js"></script>
     <script src="/Tarefa3/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
