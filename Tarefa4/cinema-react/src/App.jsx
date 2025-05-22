@@ -1,15 +1,14 @@
-import Input from "./components/input/Input"
-import FilmeForm from "./features/filme/components/FilmeForm"
 import Navbar from "./components/navbar/Navbar"
+import './App.css'
+import AppRoutes from "./routes/AppRoutes"
 
-function App() {
+export default function App() {
 
   return (
     <>
       <Navbar></Navbar>
-      <FilmeForm variant={"d-flex flex-column mb-5"}> </FilmeForm>
+      <AppRoutes/>
     </>
-  )
+  );
 }
 
-export default App
