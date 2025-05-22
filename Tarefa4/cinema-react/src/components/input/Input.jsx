@@ -1,7 +1,7 @@
 function Input({
     id,
-    type = "form-control",
-    variant,
+    type,
+    variant = "form-control",
     valor,
     placeholder,
     onChange,

@@ -1,71 +1,110 @@
 import Input from "../../../components/input/Input"
 import Button from "../../../components/buttons/Button";
+import { TextArea } from "../../../components/texarea/TextArea";
+import { Select } from "../../../components/select/Select";
+import { useState } from "react";
+
 
 
 function FilmeForm({
     variant
 }) {
-    return (
-        <form className={variant}>
+    const generos = [
+        "🎭 Drama",
+        "😂 Comédia",
+        "🎬 Ação",
+        "😱 Terror",
+        "🕵️ Suspense",
+        "🌌 Ficção Científica",
+        "🧙 Fantasia",
+        "💖 Romance",
+        "🤠 Faroeste",
+        "👶 Animação",
+        "🎸 Musical",
+        "🔍 Policial/Crime"
+    ];
 
+    const classificacoes = [
+        "Livre",
+        "10 anos",
+        "12 anos",
+        "14 anos",
+        "16 anos",
+        "18 anos"
+    ];
+
+
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [genero, setGenero] = useState("");
+    const [classificacao, setClassificacao] = useState("");
+    const [duracao, setDuracao] = useState("");
+    const [dataEstreia, setDataEstreia] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const dados = {
+            titulo,
+            descricao,
+            genero,
+            classificacao,
+            duracao,
+            dataEstreia
+        };
+
+        console.log("Dados do filme:", dados);
+    }
+
+    return (
+        <form className={variant} onSubmit={handleSubmit}>
             <Input type={"text"}
                 variant={"form-control"}
                 id={"titulo-filme"}
                 placeholder={"Digite o nome do filme"}
-                label={"Título"} />
+                label={"Título"}
+                valor={titulo}
+                onChange={e => setTitulo(e.target.value)} />
 
-            <div className="form-group mb-4">
-                <label className="text-white h4 " htmlFor="descricao-filme">Descrição</label>
-                <textarea className="form-control" id="descricao-filme"
-                    placeholder="Escreva a descrição do filme" row="3" required></textarea>
-            </div>
+            <TextArea id={"descricao-filme"}
+                label={"Descrição"}
+                variant={"form-control"}
+                numRow={"3"}
+                placeholder={"Escreva a descrição do filme"}
+                onChange={e => setDescricao(e.target.value)} />
 
-            <div className="form-group mb-4">
-                <label className="text-white h4" htmlFor="genero-filme">Gênero</label>
-                <select className="form-control" id="genero-filme">
-                    <option>🎭 Drama</option>
-                    <option>😂 Comédia</option>
-                    <option>🎬 Ação</option>
-                    <option>😱 Terror</option>
-                    <option>🕵️ Suspense</option>
-                    <option>🌌 Ficção Científica</option>
-                    <option>🧙 Fantasia </option>
-                    <option>💖 Romance</option>
-                    <option>🤠 Faroeste</option>
-                    <option>👶 Animação</option>
-                    <option>🎸 Musical</option>
-                    <option>🔍 Policial/Crime</option>
-                </select>
-            </div>
+            <Select id={"genero-filme"}
+                label={"Gênero"}
+                variant={"form-control"}
+                options={generos} 
+                onChange={e => setGenero(e.target.value)}/>
 
-            <div className="form-group mb-4">
-                <label className="text-white h4" htmlFor="classNameificacao-filme">classNameificação Indicativa</label>
-                <select className="form-control" id="classNameificacao-filme">
-                    <option>Livre</option>
-                    <option>10 anos</option>
-                    <option>12 anos</option>
-                    <option>14 anos</option>
-                    <option>16 anos</option>
-                    <option>18 anos</option>
-                </select>
-            </div>
-
+            <Select id={"classificacao-filme"}
+                label={"Classificação Indicativa"}
+                variant={"form-control"}
+                options={classificacoes} 
+                onChange={e => setClassificacao(e.target.value)}/>
 
             <Input type={"number"}
                 variant={"form-control"}
                 id={"duracao-filme"}
                 placeholder={"Digite a duração do filme"}
-                label={"Duração"} />
+                label={"Duração"}
+                valor={duracao}
+                onChange={e => setDuracao(e.target.value)} />
             <Input
                 type={"date"}
                 variant={"form-control"}
                 id={"data-filme"}
-                label={"Data de Estreia"} />
+                label={"Data de Estreia"}
+                valor={dataEstreia}
+                onChange={e => setDataEstreia(e.target.value)} />
 
             <Button
                 type={"button"}
                 variant={"btn bg-white"}
-                texto={"Cancelar"}/>
+                texto={"Cancelar"}
+            />
             <Button
                 type={"submit"}
                 variant={"btn btn-success"}
