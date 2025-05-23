@@ -99,16 +99,6 @@ function FilmeForm({
                 label={"Data de Estreia"}
                 valor={dataEstreia}
                 onChange={e => setDataEstreia(e.target.value)} />
-
-            <Button
-                type={"button"}
-                variant={"btn bg-white"}
-                texto={"Cancelar"}
-            />
-            <Button
-                type={"submit"}
-                variant={"btn btn-success"}
-                texto={"Salvar"} />
         </form>
     );
 }

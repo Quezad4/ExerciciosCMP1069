@@ -9,7 +9,7 @@ function Input({
 }){
     return (
         <div className="form-group mb-4">
-            <label className= "text-dark h4" htmlFor={id}>{label}</label>
+            <label className= "text-white h4" htmlFor={id}>{label}</label>
             <input 
             id={id}
             type={type} 
