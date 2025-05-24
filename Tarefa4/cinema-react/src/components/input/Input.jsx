@@ -16,7 +16,8 @@ function Input({
             className={variant} 
             value={valor}
             placeholder={placeholder}
-            onChange={onChange} />
+            onChange={onChange} 
+            required/>
         </div>
     );
 }

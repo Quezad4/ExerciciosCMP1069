@@ -2,12 +2,15 @@ import Input from "../../../components/input/Input"
 import Button from "../../../components/buttons/Button";
 import { TextArea } from "../../../components/texarea/TextArea";
 import { Select } from "../../../components/select/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 
 
 function FilmeForm({
-    variant
+    variant,
+    onSubmit,
+    onEditar
 }) {
     const generos = [
         "🎭 Drama",
@@ -36,8 +39,8 @@ function FilmeForm({
 
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
-    const [genero, setGenero] = useState("");
-    const [classificacao, setClassificacao] = useState("");
+    const [genero, setGenero] = useState("🎭 Drama");
+    const [classificacao, setClassificacao] = useState("Livre");
     const [duracao, setDuracao] = useState("");
     const [dataEstreia, setDataEstreia] = useState("");
 
@@ -52,12 +55,35 @@ function FilmeForm({
             duracao,
             dataEstreia
         };
-
-        console.log("Dados do filme:", dados);
+        onSubmit(dados);
     }
 
+    function carregarDadosEditar(filme) {
+        const {
+            titulo,
+            genero,
+            classificacao,
+            duracao,
+            dataEstreia
+        } = filme;
+
+        setTitulo(titulo);
+        setGenero(genero);
+        setClassificacao(classificacao);
+        setDuracao(duracao);
+        setDataEstreia(dataEstreia)
+    }
+
+
+    useEffect(() => {
+        if (onEditar) {
+            carregarDadosEditar(onEditar)
+        }
+    }, [onEditar])
+    
+
     return (
-        <form className={variant} onSubmit={handleSubmit}>
+        <form className={variant} id="filme-form" onSubmit={handleSubmit}>
             <Input type={"text"}
                 variant={"form-control"}
                 id={"titulo-filme"}
@@ -76,14 +102,14 @@ function FilmeForm({
             <Select id={"genero-filme"}
                 label={"Gênero"}
                 variant={"form-control"}
-                options={generos} 
-                onChange={e => setGenero(e.target.value)}/>
+                options={generos}
+                onChange={e => setGenero(e.target.value)} />
 
             <Select id={"classificacao-filme"}
                 label={"Classificação Indicativa"}
                 variant={"form-control"}
-                options={classificacoes} 
-                onChange={e => setClassificacao(e.target.value)}/>
+                options={classificacoes}
+                onChange={e => setClassificacao(e.target.value)} />
 
             <Input type={"number"}
                 variant={"form-control"}

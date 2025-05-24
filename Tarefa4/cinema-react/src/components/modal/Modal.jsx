@@ -2,6 +2,7 @@ export function Modal({
     body,
     titulo,
     fecharModal,
+    form
 }) {
 
 
@@ -13,7 +14,7 @@ export function Modal({
                     <div className="modal-content">
                         <div className="modal-header text-white bg-secondary">
                             <h5 className="modal-title">{titulo}</h5>
-                            <button type="button" className="btn-close btn-close-white " data-bs-dismiss="modal" aria-label="Fechar" onClick={fecharModal}/>
+                            <button type="button" className="btn-close btn-close-white " data-bs-dismiss="modal" aria-label="Fechar" onClick={fecharModal} />
 
                         </div>
                         <div className="modal-body bg-dark">
@@ -23,7 +24,7 @@ export function Modal({
                             <button type="button" className="btn bg-white" onClick={fecharModal}>
                                 Cancelar
                             </button>
-                            <button type="submit" className="btn btn-success" onClick={() => {/* lógica salvar */ }}>
+                            <button type="submit" className="btn btn-success" form={form} >
                                 Salvar
                             </button>
                         </div>

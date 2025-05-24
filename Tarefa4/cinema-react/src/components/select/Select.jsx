@@ -10,7 +10,7 @@ export function Select({
         <>
             <div className="form-group mb-4">
                 <label className="text-white h4" htmlFor={id}>{label}</label>
-                <select className={variant} id={id} onChange={onChange}>
+                <select className={variant} id={id} onChange={onChange} required>
                     {options.map((opcao, i) => {
                        return <option key={i} value={opcao}>{opcao}</option>
                     })}

@@ -1,9 +1,13 @@
-export function FilmeTable({
+import Button from "../../../components/buttons/Button";
 
+
+export function FilmeTable({
+    listaFilmes,
+    botaoExcluir,
+    botaoEditar
 }) {
     return (
         <>
-
             <table className="table table-striped " id="tabela-filmes">
                 <thead>
                     <tr>
@@ -16,6 +20,23 @@ export function FilmeTable({
                         <th>Editar/Excluir</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {listaFilmes.map((filme, i) => {
+                        const { titulo, descricao, genero, classificacao, duracao, dataEstreia } = filme
+                        return (
+                            <tr key={i} >
+                                <td> {i+1} </td>
+                                <td> {titulo} </td>
+                                <td> {genero} </td>
+                                <td> {classificacao} </td>
+                                <td> {duracao} </td>
+                                <td> {dataEstreia} </td>
+                                <td> <Button variant={"rounded bg-secondary text-white"}  texto={"Editar"} onClick={() => botaoEditar(i)}/>
+                                     <Button variant={"rounded bg-danger text-white"} texto={"Excluir"} onClick={()=> botaoExcluir(i)}/> </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
             </table>
 
         </>
