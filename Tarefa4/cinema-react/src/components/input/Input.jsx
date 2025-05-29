@@ -5,7 +5,9 @@ function Input({
     valor,
     placeholder,
     onChange,
-    label
+    label,
+    step,
+    min
 }){
     return (
         <div className="form-group mb-4">
@@ -16,7 +18,9 @@ function Input({
             className={variant} 
             value={valor}
             placeholder={placeholder}
-            onChange={onChange} 
+            onChange={onChange}
+            step={step}
+            min={min} 
             required/>
         </div>
     );

@@ -3,20 +3,22 @@ import Button from "../../components/buttons/Button";
 import { Modal } from "../../components/modal/Modal";
 import { FilmeTable } from "./components/FilmeTable";
 import { useEffect, useState } from "react";
-import { adicionarFilme } from "./services/storage";
+import { adicionarFilme, alterarFilmeEditado } from "./services/storage";
 import { excluirFilmeServices } from "./services/storage";
 import { getFilmeEditar } from "./services/storage";
 
 
 export function CadastrarFilme() {
-    
-    
+
+
 
     const [filmesTabela, setFilmesTabela] = useState([])
     const [isOpen, setIsOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
 
     const [filmeEditando, setFilmeEditando] = useState(null)
+    const [indexEditado, setIndexEditado] = useState(null)
+
 
     function abrirModal() {
         setIsOpen(true);
@@ -26,7 +28,7 @@ export function CadastrarFilme() {
         setIsOpen(false);
     }
 
-     function abrirEditModal() {
+    function abrirEditModal() {
         setIsEditOpen(true);
     }
 
@@ -39,23 +41,29 @@ export function CadastrarFilme() {
         fecharModal();
     }
 
-    function excluirFilme(index){
+    function handleSubmitEditar(filme) {
+        setFilmesTabela(alterarFilmeEditado(filme, indexEditado));
+        fecharEditModal();
+    }
+
+    function excluirFilme(index) {
         setFilmesTabela(excluirFilmeServices(index));
     }
 
-    function editarFilme(index){
+    function editarFilme(index) {
         setFilmeEditando(getFilmeEditar(index));
+        setIndexEditado(index)
         abrirEditModal();
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         setFilmesTabela(JSON.parse(localStorage.getItem("filmes")) || [])
     }, [])
 
     return (
         <>
             <div className="container d-flex flex-column">
-                <h2 className="text-white mb-3 fonte-principal">Cadastro de Filmes</h2>
+                <h2 className="text-white mb-3 fonte-principal">Cadastrar Filme</h2>
                 <Button
                     variant={"mb-5 rounded"}
                     texto={"Cadastar Filmes"}
@@ -68,15 +76,15 @@ export function CadastrarFilme() {
                     form={"filme-form"} />}
 
                 {isEditOpen && <Modal
-                    titulo={"Editar"}
-                    body={<FilmeForm onSubmit={handleSubmit}  onEditar={filmeEditando}/>}
+                    titulo={"Editar Filme"}
+                    body={<FilmeForm onSubmit={handleSubmitEditar} onEditar={filmeEditando} />}
                     fecharModal={fecharEditModal}
                     form={"filme-form"} />}
 
                 <FilmeTable
-                    listaFilmes={filmesTabela} 
+                    listaFilmes={filmesTabela}
                     botaoExcluir={excluirFilme}
-                    botaoEditar={editarFilme}/>
+                    botaoEditar={editarFilme} />
             </div>
         </>
     );

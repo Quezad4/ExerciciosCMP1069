@@ -1,35 +1,53 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Input from "../../../components/input/Input"
 import { Select } from "../../../components/select/Select"
 
-export function SalaForm(
-    variant
-) {
+export function SalaForm({
+    variant,
+    onSubmit,
+    onEditar
+}) {
 
 
     const [nomeSala, setNomeSala] = useState("")
     const [capacidadeSala, setCapacidadeSala] = useState("")
-    const [tipoSala, setTipoSala] = useState("")
-
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log("asdasdas")
-        const dados = {
-            nomeSala,
-            capacidadeSala,
-            tipoSala
-        };
-
-        console.log("Dados da sala:", dados);
-    }
-
+    const [tipoSala, setTipoSala] = useState("2D")
 
     const formatos = [
         "2D",
         "3D",
         "IMAX"
     ];
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const dados = {
+            nomeSala,
+            capacidadeSala,
+            tipoSala
+        };
+
+        onSubmit(dados);
+    }
+
+    function carregarDadosEditar(sala) {
+        const {
+            nomeSala,
+            capacidadeSala,
+            tipoSala,
+        } = sala;
+
+        setNomeSala(nomeSala);
+        setCapacidadeSala(capacidadeSala);
+        setTipoSala(tipoSala);
+
+    }
+
+
+    useEffect(() => {
+        if (onEditar)
+            carregarDadosEditar(onEditar)
+    }, [onEditar])
 
 
     return (
