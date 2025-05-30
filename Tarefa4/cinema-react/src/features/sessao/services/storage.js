@@ -32,3 +32,40 @@ export function alterarSessaoEditado(sessao, index) {
     return (listaSessoes)
 
 }
+
+export function getHorariosSessao(nomeFilme) {
+    let listaSessoes = getSessoes();
+    const horarios = listaSessoes
+        .filter(sessao => sessao.filme === nomeFilme)
+        .map(sessao => sessao.dataHoraSessao);
+    return horarios;
+}
+
+export function getTiposSessao(nomeFilme, horario) {
+    const listaSessoes = getSessoes();
+
+    const tipos = listaSessoes
+        .filter(sessao => 
+            sessao.filme === nomeFilme && 
+            sessao.dataHoraSessao === horario
+        )
+        .map(sessao => sessao.tipoSala);
+
+    const tiposUnicos = [...new Set(tipos)];
+    return tiposUnicos;
+}
+
+
+export function getIdiomasSessao(nomeFilme, horario, tipo) {
+    const listaSessoes = getSessoes();
+
+    const idiomas = listaSessoes
+        .filter(sessao =>
+            sessao.filme === nomeFilme &&
+            sessao.dataHoraSessao === horario &&
+            sessao.tipoSala === tipo
+        )
+        .map(sessao => sessao.idioma);
+
+    return [...new Set(idiomas)];
+}

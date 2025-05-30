@@ -83,13 +83,7 @@ export function CadastarSessao({
                     body={<SessaoForm onSubmit={handleEditSubmit} onEditar={sessaoEditando} />}
                     fecharModal={fecharEditModal}
                     form={"sessao-form"} />}
-                {/*
-                <FilmeTable
-                    listaFilmes={filmesTabela}
-                    botaoExcluir={excluirFilme}
-                    botaoEditar={editarFilme} />
-                */}
-
+        
                 <SessaoTable listaSessoes={sessoesTabela}
                     botaoExcluir={excluirSessao}
                     botaoEditar={editarSessao} />

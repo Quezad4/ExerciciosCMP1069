@@ -20,7 +20,7 @@ function Navbar({
                             <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/cadastrarFilme'>Cadastrar Filmes</NavLink></li>
                             <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/cadastrarSala'>Cadastrar Salas</NavLink></li>
                             <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/cadastrarSessao'>Cadastrar Sessões</NavLink></li>
-                            <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/vendaIngressos'>Venda de Ingressos</NavLink></li>
+                            <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/ingressos'>Venda de Ingressos</NavLink></li>
                             <li className="nav-item"> <NavLink className='nav-link text-dark fonte-principal' to='/sessoes'>Listagem de Sessões</NavLink></li>
 
                         </ul>

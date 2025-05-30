@@ -47,6 +47,7 @@ export function CadastrarSala() {
     function excluirSala(index){
         setSalasTabela(excluirSalaServices(index))
     }
+    
     function editarSala(index){
         setSalaEditando(getSalaEditar(index));
         setIndexEditado(index);
