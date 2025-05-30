@@ -1,7 +1,7 @@
 export function Home(){
     return(
         <>
-            <h1 className="text-white">TESTE HOME</h1>
+            <h1 className="text-white">EM BREVE</h1>
         </>
     )
 }
