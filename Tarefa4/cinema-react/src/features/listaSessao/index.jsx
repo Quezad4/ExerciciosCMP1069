@@ -15,10 +15,15 @@ export function ListaSessoes({
     const navigate = useNavigate();
 
 
+    async function carregarSessoes() {
+        const lista = await getSessoes();
+        console.log(lista)
+        setListaSessoes(lista);
+    }
 
     useEffect(() => {
-        setListaSessoes(getSessoes);
-    }, [])
+        carregarSessoes();
+    }, []);
 
     function handleComprar(){
         navigate(`/ingressos`)
@@ -35,8 +40,8 @@ export function ListaSessoes({
                         <CardSessao
                             tituloFilme={sessao.filme}
                             nomeSala={sessao.sala}
-                            dataHora={sessao.dataHoraSessao}
-                            preco={sessao.precoSessao}
+                            dataHora={new Date(sessao.dataHora).toISOString().slice(0, 16)}
+                            preco={sessao.preco}
                             onComprar={handleComprar}/>
                     </div>
                 ))}
