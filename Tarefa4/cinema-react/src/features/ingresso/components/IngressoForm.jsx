@@ -28,24 +28,25 @@ export function IngressoForm({
 
 
 
-    function carregarFilmes() {
-        setListaFilmes(getNomeFilmes())
+    async function carregarFilmes() {
+        const filmes = await getNomeFilmes()
+        setListaFilmes(filmes)
     }
 
-    function carregarHorarios(nomeFilme) {
-        const horarios = getHorariosSessao(nomeFilme);
+    async function carregarHorarios(nomeFilme) {
+        const horarios = await getHorariosSessao(nomeFilme);
         setListaHorarios(horarios);
         setHorario(horarios[0] || "");
     }
 
-    function carregarTipos(nomeFilme, horario) {
-        const tipos = getTiposSessao(nomeFilme, horario);
+    async function carregarTipos(nomeFilme, horario) {
+        const tipos = await getTiposSessao(nomeFilme, horario);
         setListaTipos(tipos);
         setTipo(tipos[0] || "");
     }
 
-    function carregarIdiomas(nomeFilme, horario, tipo) {
-        const idiomas = getIdiomasSessao(nomeFilme, horario, tipo);
+    async function carregarIdiomas(nomeFilme, horario, tipo) {
+        const idiomas = await getIdiomasSessao(nomeFilme, horario, tipo);
         setListaIdiomas(idiomas);
         setIdioma(idiomas[0] || "");
     }
@@ -90,7 +91,7 @@ export function IngressoForm({
         if (filme) {
             carregarHorarios(filme);
             setListaTipos([]);
-            setTipo(""); // resetar tipo ao mudar de filme
+            setTipo(""); 
         }
     }, [filme]);
 

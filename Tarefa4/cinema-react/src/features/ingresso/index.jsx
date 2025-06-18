@@ -3,7 +3,7 @@ import { IngressoTable } from "./components/IngressoTable";
 import { IngressoForm } from "./components/IngressoForm";
 import { Modal } from "../../components/modal/Modal";
 import { useState, useEffect } from "react";
-import { adicionarIngresso } from "./services/storage";
+import { adicionarIngresso, getIngressos } from "./services/storage";
 
 
 
@@ -23,14 +23,20 @@ export function Ingressos({
         setIsOpen(false);
     }
 
-    function handleSubmit(ingresso) {
-        setIngressosTabela(adicionarIngresso(ingresso));
+    async function handleSubmit(ingresso) {
+        await adicionarIngresso(ingresso);
+        await carregarIngressos();
         fecharModal();
     }
 
+    async function carregarIngressos() {
+        const lista = await getIngressos();
+        setIngressosTabela(lista);
+    }
+
     useEffect(() => {
-            setIngressosTabela(JSON.parse(localStorage.getItem("ingressos")) || [])
-        }, [])
+        carregarIngressos();
+    }, []);
 
 
     return (

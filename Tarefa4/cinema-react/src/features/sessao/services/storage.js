@@ -37,7 +37,7 @@ export async function excluirSessoesServices(id) {
         throw new Error(`Erro ao excluir a sessão: ${response.statusText}`);
     }
 
-    return true;  // Retorna `true` se a exclusão for bem-sucedida
+    return true;  
 }
 
 export async function getSessaoEditar(id) {
@@ -68,21 +68,24 @@ export async function alterarSessaoEditado(sessao, id) {
     return data;
 }
 
-export function getHorariosSessao(nomeFilme) {
-    let listaSessoes = getSessoes();
+export async function getHorariosSessao(nomeFilme) {
+    console.log(nomeFilme)
+    let listaSessoes = await getSessoes();
+    console.log(listaSessoes)
     const horarios = listaSessoes
         .filter(sessao => sessao.filme === nomeFilme)
-        .map(sessao => sessao.dataHoraSessao);
+        .map(sessao => sessao.dataHora);
+    console.log(horarios)
     return horarios;
 }
 
-export function getTiposSessao(nomeFilme, horario) {
-    const listaSessoes = getSessoes();
+export async function getTiposSessao(nomeFilme, horario) {
+    const listaSessoes = await getSessoes();
 
     const tipos = listaSessoes
         .filter(sessao =>
             sessao.filme === nomeFilme &&
-            sessao.dataHoraSessao === horario
+            sessao.dataHora === horario
         )
         .map(sessao => sessao.tipoSala);
 
@@ -91,13 +94,13 @@ export function getTiposSessao(nomeFilme, horario) {
 }
 
 
-export function getIdiomasSessao(nomeFilme, horario, tipo) {
-    const listaSessoes = getSessoes();
+export async function getIdiomasSessao(nomeFilme, horario, tipo) {
+    const listaSessoes = await getSessoes();
 
     const idiomas = listaSessoes
         .filter(sessao =>
             sessao.filme === nomeFilme &&
-            sessao.dataHoraSessao === horario &&
+            sessao.dataHora === horario &&
             sessao.tipoSala === tipo
         )
         .map(sessao => sessao.idioma);

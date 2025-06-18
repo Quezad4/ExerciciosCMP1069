@@ -19,10 +19,10 @@ export function IngressoTable({
                 </thead>
                 <tbody>
                     {listaIngressos.map((ingresso, i) => {
-                        const { nome, cpf, assento, pagamento, filme, horario, tipo, idioma } = ingresso
+                        const { id, nome, cpf, assento, pagamento, filme, horario, tipo, idioma } = ingresso
                         return (
                             <tr key={i} >
-                                <td> {i + 1} </td>
+                                <td> {id} </td>
                                 <td> {filme} </td>
                                 <td> {horario} </td>
                                 <td> {tipo} </td>
