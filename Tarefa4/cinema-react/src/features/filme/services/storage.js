@@ -11,8 +11,8 @@ export async function getFilmes() {
     return data;
 }
 
-export function getNomeFilmes() {
-    const listaFilmes = getFilmes();
+export async function getNomeFilmes() {
+    const listaFilmes = await getFilmes();
     return listaFilmes.map(filme => filme.titulo);
 }
 

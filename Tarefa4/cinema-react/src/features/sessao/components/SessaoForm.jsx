@@ -7,7 +7,7 @@ import { getNomeSalas, getTipoSalaServices } from "../../sala/services/storage";
 export function SessaoForm({
     onSubmit,
     onEditar
-    
+
 }) {
 
 
@@ -23,54 +23,62 @@ export function SessaoForm({
     const [sala, setSala] = useState(listaSalas[0] || "")
     const [tipoSala, setTipoSala] = useState("")
 
-    const [dataHoraSessao, setDataHoraSessao] = useState("");
-    const [precoSessao, setPrecoSessao] = useState("");
+    const [dataHora, setDataHoraSessao] = useState("");
+    const [preco, setPrecoSessao] = useState("");
     const [idioma, setIdioma] = useState("Legendado")
 
-    
 
 
 
-    function carregarFilmes() {
-        setListaFilmes(getNomeFilmes())
-    }
-    function carregarSalas() {
-        setListaSalas(getNomeSalas);
+    async function carregarFilmes() {
+        const filmes = await getNomeFilmes();
+        setListaFilmes(filmes);
     }
 
-    function getTipoSala(nomeSala) {
-        setTipoSala(getTipoSalaServices(nomeSala))
+    async function carregarSalas() {
+        const salas = await getNomeSalas();
+        setListaSalas(salas);
     }
 
-    function handleSubmit(e) {
+    async function getTipoSala(nomeSala) {
+        const tipo = await getTipoSalaServices(nomeSala);
+        setTipoSala(tipo);
+    }
+
+    async function handleSubmit(e) {
         e.preventDefault();
         const dados = {
             filme,
             sala,
             tipoSala,
-            dataHoraSessao,
-            precoSessao,
+            dataHora,
+            preco,
             idioma
         }
-        onSubmit(dados)
+        await onSubmit(dados)
     }
 
-    function carregarDadosEditar(sessao) {
-        
+    async function carregarDadosEditar(sessao) {
+
         const {
             filme,
             sala,
             tipoSala,
-            dataHoraSessao,
-            precoSessao,
+            dataHora,
+            preco,
             idioma
         } = sessao;
 
         setFilme(filme);
         setSala(sala);
         setTipoSala(tipoSala);
-        setDataHoraSessao(dataHoraSessao)
-        setPrecoSessao(precoSessao)
+
+        // Formatar a data para o formato necessário para datetime-local
+        const dataFormatada = new Date(dataHora)
+            .toISOString()           // Converte para string ISO
+            .slice(0, 16);           // Pega apenas a parte YYYY-MM-DDTHH:mm
+        setDataHoraSessao(dataFormatada)
+        setPrecoSessao(preco)
         setIdioma(idioma)
 
     }
@@ -102,9 +110,15 @@ export function SessaoForm({
     }, [sala]);
 
     useEffect(() => {
-        if (onEditar)
-            carregarDadosEditar(onEditar)
-    }, [onEditar])
+        async function fetchEditar() {
+            if (onEditar) {
+                const dados = await onEditar;
+                carregarDadosEditar(dados);
+            }
+        }
+
+        fetchEditar();
+    }, [onEditar]);
 
 
     return (
@@ -131,7 +145,7 @@ export function SessaoForm({
                     id={"dataHora-sessao"}
                     placeholder={"Digite a data e a Hora"}
                     label={"Data e Hora"}
-                    valor={dataHoraSessao}
+                    valor={dataHora}
                     onChange={e => setDataHoraSessao(e.target.value)} />
                 <Input
                     type={"number"}
@@ -139,7 +153,7 @@ export function SessaoForm({
                     id={"preco-sessao"}
                     placeholder={"Digite o preço da sessão"}
                     label={"Preço"}
-                    valor={precoSessao}
+                    valor={preco}
                     step={"0.01"}
                     min={"0"}
                     onChange={e => setPrecoSessao(e.target.value)} />
@@ -149,6 +163,7 @@ export function SessaoForm({
                     variant={"form-control"}
                     label={"Idioma"}
                     options={idiomas}
+                    valor={idioma}
                     onChange={(e) => setIdioma(e.target.value)} />
 
             </form>

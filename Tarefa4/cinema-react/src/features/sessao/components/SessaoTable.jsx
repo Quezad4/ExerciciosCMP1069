@@ -25,18 +25,18 @@ export function SessaoTable({
                 </thead>
                 <tbody>
                     {listaSessoes.map((sessao, i) => {
-                        const { filme, sala, tipoSala, dataHoraSessao, precoSessao, idioma} = sessao
+                        const {id, filme, sala, tipoSala, dataHora, preco, idioma} = sessao
                         return (
                             <tr key={i} >
-                                <td> {i + 1} </td>
+                                <td> {id} </td>
                                 <td> {filme} </td>
                                 <td> {sala} </td>
                                 <td> {tipoSala} </td>
-                                <td> {dataHoraSessao} </td>
-                                <td> {precoSessao} </td>
+                                <td> {dataHora} </td>
+                                <td> {preco} </td>
                                 <td> {idioma} </td>
-                                <td> <Button variant={"rounded bg-secondary text-white"} texto={"Editar"} onClick={() => botaoEditar(i)} />
-                                    <Button variant={"rounded bg-danger text-white"} texto={"Excluir"} onClick={() => botaoExcluir(i)} /> </td>
+                                <td> <Button variant={"rounded bg-secondary text-white"} texto={"Editar"} onClick={() => botaoEditar(id)} />
+                                    <Button variant={"rounded bg-danger text-white"} texto={"Excluir"} onClick={() => botaoExcluir(id)} /> </td>
                             </tr>
                         );
                     })}

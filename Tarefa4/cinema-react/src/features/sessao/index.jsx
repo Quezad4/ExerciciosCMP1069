@@ -3,7 +3,7 @@ import { Modal } from "../../components/modal/Modal";
 import { useState, useEffect } from "react";
 import { SessaoForm } from "./components/SessaoForm";
 import { SessaoTable } from "./components/SessaoTable";
-import { adicionarSessao, excluirSessoesServices, getSessaoEditar, alterarSessaoEditado } from "./services/storage";
+import { adicionarSessao, excluirSessoesServices, getSessaoEditar, alterarSessaoEditado, getSessoes } from "./services/storage";
 
 
 
@@ -36,19 +36,22 @@ export function CadastarSessao({
     }
 
 
-    function handleSubmit(sessao) {
-        setSessoesTabela(adicionarSessao(sessao));
+    async function handleSubmit(sessao) {
+        await adicionarSessao(sessao);
+        await carregarSessoes();
         fecharModal();
     }
 
-    function handleEditSubmit(sessao) {
-        setSessoesTabela(alterarSessaoEditado(sessao, indexEditado));
-        fecharEditModal()
+    async function handleEditSubmit(sessao) {
+        await alterarSessaoEditado(sessao, indexEditado);
+        await carregarSessoes();
+        fecharEditModal();
     }
 
 
-    function excluirSessao(index) {
-        setSessoesTabela(excluirSessoesServices(index))
+    async function excluirSessao(index) {
+        await excluirSessoesServices(index);
+        await carregarSessoes();
     }
 
     function editarSessao(index) {
@@ -58,9 +61,14 @@ export function CadastarSessao({
     }
 
 
+    const carregarSessoes = async () => {
+        const lista = await getSessoes();
+        setSessoesTabela(lista);
+    }
+
     useEffect(() => {
-        setSessoesTabela(JSON.parse(localStorage.getItem("sessoes")) || [])
-    }, [])
+        carregarSessoes();
+    }, []);
 
     return (
         <>

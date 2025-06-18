@@ -1,36 +1,71 @@
-export function getSessoes() {
-    return JSON.parse(localStorage.getItem("sessoes")) || [];
+const API_URL = "http://localhost:3000/sessoes";
+
+export async function getSessoes() {
+    const response = await fetch(`${API_URL}`);
+    if (!response.ok) {
+        throw new Error("Erro ao carregar sessões.");
+    }
+    const data = await response.json();
+    return data;
+}
+
+export async function adicionarSessao(sessao) {
+    console.log(sessao)
+    const response = await fetch(`${API_URL}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sessao)
+    });
+
+    if (!response.ok) {
+        throw new Error("Erro ao adicionar sessão.");
+    }
+
+    const data = await response.json();
+    return data;  
 }
 
 
-export function adicionarSessao(sessao) {
-    const sessoesSalvas = [...getSessoes(), sessao];
-    atualizarSessoes(sessoesSalvas)
-    return sessoesSalvas;
+export async function excluirSessoesServices(id) {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro ao excluir a sessão: ${response.statusText}`);
+    }
+
+    return true;  // Retorna `true` se a exclusão for bem-sucedida
 }
 
-export function atualizarSessoes(listaSessoes) {
-    localStorage.setItem("sessoes", JSON.stringify(listaSessoes));
+export async function getSessaoEditar(id) {
+    const response = await fetch(`${API_URL}/${id}`);
+    if (!response.ok) {
+        throw new Error(`Erro ao buscar sessão para edição: ${response.statusText}`);
+    }
+    const data = await response.json();
+    console.log(data)
+    return data;
 }
 
-export function excluirSessoesServices(index) {
-    let listaSessoes = getSessoes();
-    listaSessoes.splice(index, 1);
-    atualizarSessoes(listaSessoes)
-    return (listaSessoes);
-}
+export async function alterarSessaoEditado(sessao, id) {
+    console.log(JSON.stringify(sessao))
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sessao)
+    });
 
-export function getSessaoEditar(index) {
-    let listaSessoes = getSessoes();
-    return (listaSessoes[index]);
-}
+    if (!response.ok) {
+        throw new Error(`Erro ao atualizar a sessão: ${response.statusText}`);
+    }
 
-export function alterarSessaoEditado(sessao, index) {
-    let listaSessoes = getSessoes();
-    listaSessoes[index] = sessao
-    atualizarSessoes(listaSessoes);
-    return (listaSessoes)
-
+    const data = await response.json();
+    return data;
 }
 
 export function getHorariosSessao(nomeFilme) {
@@ -45,8 +80,8 @@ export function getTiposSessao(nomeFilme, horario) {
     const listaSessoes = getSessoes();
 
     const tipos = listaSessoes
-        .filter(sessao => 
-            sessao.filme === nomeFilme && 
+        .filter(sessao =>
+            sessao.filme === nomeFilme &&
             sessao.dataHoraSessao === horario
         )
         .map(sessao => sessao.tipoSala);

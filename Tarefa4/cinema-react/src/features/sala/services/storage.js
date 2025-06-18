@@ -7,15 +7,15 @@ export async function getSalas() {
     return data;
 }
 
-export function getNomeSalas() {
-    const listaSalas = getSalas();
-    return listaSalas.map(sala => sala.nomeSala);
+export async function getNomeSalas() {
+    const listaSalas = await getSalas();
+    return listaSalas.map(sala => sala.nome);
 }
 
-export function getTipoSalaServices(nomeSala) {
-    const listaSalas = getSalas();
-    const salaEncontrada = listaSalas.find(sala => sala.nomeSala === nomeSala);
-    return salaEncontrada ? salaEncontrada.tipoSala : null;
+export async function getTipoSalaServices(nomeSala) {
+    const listaSalas = await getSalas();
+    const salaEncontrada = listaSalas.find(sala => sala.nome === nomeSala);
+    return salaEncontrada ? salaEncontrada.tipo : null;
 }
 
 
@@ -52,7 +52,7 @@ export async function excluirSalaServices(id) {
 }
 
 export async function getSalaEditar(id) {
-    
+
     const response = await fetch(`${API_URL}/${id}`);
     const data = await response.json();
     console.log(data)
