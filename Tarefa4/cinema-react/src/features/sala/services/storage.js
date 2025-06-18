@@ -1,5 +1,10 @@
-export function getSalas() {
-    return JSON.parse(localStorage.getItem("salas")) || [];
+const API_URL = "http://localhost:3000/salas";
+
+
+export async function getSalas() {
+    const response = await fetch(`${API_URL}`);
+    const data = await response.json();
+    return data;
 }
 
 export function getNomeSalas() {
@@ -14,35 +19,61 @@ export function getTipoSalaServices(nomeSala) {
 }
 
 
-export function adicionarSala(sala) {
-    const salasSalvas = [...getSalas(), sala];
-    atualizarSalas(salasSalvas)
-    return salasSalvas;
+export async function adicionarSala(sala) {
+    console.log("post", sala)
+    const response = await fetch(`${API_URL}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sala)
+    });
+
+    if (!response.ok) {
+        throw new Error("Erro ao adicionar a sala");
+    }
+
+    const data = await response.json();
+
+
+    return data;
 }
 
-export function excluirSalaServices(index) {
-    let listaSalas = getSalas();
-    listaSalas.splice(index, 1);
-    atualizarSalas(listaSalas)
-    return (listaSalas);
+export async function excluirSalaServices(id) {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro ao excluir a sala: ${response.statusText}`);
+    }
+
+    return true;
 }
 
-export function atualizarSalas(listaSalas) {
-    localStorage.setItem("salas", JSON.stringify(listaSalas));
+export async function getSalaEditar(id) {
+    
+    const response = await fetch(`${API_URL}/${id}`);
+    const data = await response.json();
+    console.log(data)
+    return data;
 }
 
-export function getSalaEditar(index) {
-    let listaSalas = getSalas();
-    return (listaSalas[index]);
-}
+export async function alterarSalaEditado(sala, id) {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sala)
+    });
 
-export function alterarSalaEditado(sala, index) {
-    let listaSalas = getSalas();
-    listaSalas[index] = sala
-    console.log(listaSalas)
-    atualizarSalas(listaSalas);
-    return (listaSalas)
+    if (!response.ok) {
+        throw new Error(`Erro ao atualizar a sala: ${response.statusText}`);
+    }
 
+    const data = await response.json();
+    return data;
 }
 
 

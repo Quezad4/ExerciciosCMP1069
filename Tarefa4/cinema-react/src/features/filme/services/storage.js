@@ -3,49 +3,63 @@
 // DELETE
 // ATUALIZAR
 
+const API_URL = "http://localhost:3000/filme";
 
-export function getFilmes() {
-    return JSON.parse(localStorage.getItem("filmes")) || [];
+export async function getFilmes() {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    return data;
 }
 
 export function getNomeFilmes() {
-  const listaFilmes = getFilmes();
-  return listaFilmes.map(filme => filme.titulo);
+    const listaFilmes = getFilmes();
+    return listaFilmes.map(filme => filme.titulo);
 }
 
 
-export function adicionarFilme(filme) {
-    const filmesSalvos = [...getFilmes(), filme];
-    atualizarFilmes(filmesSalvos)
-    return filmesSalvos;
+export async function adicionarFilme(filme) {
+    console.log(filme)
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(filme),
+    });
+    const data = await response.json();
+    console.log(data)
+    return data;
 }
 
-export function excluirFilmeServices(index) {
-    let listaFilmes = getFilmes();
-    listaFilmes.splice(index, 1);
-    atualizarFilmes(listaFilmes)
-    return (listaFilmes);
+export async function excluirFilmeServices(id) {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+    });
+    return response.ok;
 }
 
-export function atualizarFilmes(listaFilmes) {
-    localStorage.setItem("filmes", JSON.stringify(listaFilmes));
+export async function getFilmeEditar(id) {
+    const response = await fetch(`${API_URL}/${id}`);
+    const data = await response.json();
+    return data;
 }
 
-export function getFilmeEditar(index) {
-    let listaFilmes = getFilmes();
-    return (listaFilmes[index]);
-}
-
-export function alterarFilmeEditado(filme, index){
-    let listaFilmes = getFilmes();
-    listaFilmes[index] = filme
-    console.log(listaFilmes)
-    atualizarFilmes(listaFilmes);
-    return(listaFilmes)
-    
-}
-
-
+export async function alterarFilmeEditado(filme, id) {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(filme)
+    });
+  
+    if (!response.ok) {
+      throw new Error(`Erro ao atualizar o filme: ${response.statusText}`);
+    }
+  
+    const data = await response.json();
+    console.log(data)
+    return data;
+  }
+  
 
 
 

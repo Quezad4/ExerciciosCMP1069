@@ -22,17 +22,17 @@ export function FilmeTable({
                 </thead>
                 <tbody>
                     {listaFilmes.map((filme, i) => {
-                        const { titulo, descricao, genero, classificacao, duracao, dataEstreia } = filme
+                        const { id ,titulo, descricao, genero, classificacao, duracao, dataEstreia } = filme
                         return (
                             <tr key={i} >
-                                <td> {i+1} </td>
+                                <td> {id} </td>
                                 <td> {titulo} </td>
                                 <td> {genero} </td>
                                 <td> {classificacao} </td>
                                 <td> {duracao} </td>
                                 <td> {dataEstreia} </td>
-                                <td> <Button variant={"rounded bg-secondary text-white"}  texto={"Editar"} onClick={() => botaoEditar(i)}/>
-                                     <Button variant={"rounded bg-danger text-white"} texto={"Excluir"} onClick={()=> botaoExcluir(i)}/> </td>
+                                <td> <Button variant={"rounded bg-secondary text-white"}  texto={"Editar"} onClick={() => botaoEditar(id)}/>
+                                     <Button variant={"rounded bg-danger text-white"} texto={"Excluir"} onClick={()=> botaoExcluir(id)}/> </td>
                             </tr>
                         );
                     })}

@@ -9,9 +9,9 @@ export function SalaForm({
 }) {
 
 
-    const [nomeSala, setNomeSala] = useState("")
-    const [capacidadeSala, setCapacidadeSala] = useState("")
-    const [tipoSala, setTipoSala] = useState("2D")
+    const [nome, setNomeSala] = useState("")
+    const [capacidade, setCapacidadeSala] = useState("")
+    const [tipo, setTipoSala] = useState("2D")
 
     const formatos = [
         "2D",
@@ -22,33 +22,39 @@ export function SalaForm({
     function handleSubmit(e) {
         e.preventDefault();
         const dados = {
-            nomeSala,
-            capacidadeSala,
-            tipoSala
+            nome,
+            capacidade,
+            tipo
         };
 
         onSubmit(dados);
     }
 
     function carregarDadosEditar(sala) {
-        
+
         const {
-            nomeSala,
-            capacidadeSala,
-            tipoSala,
+            nome,
+            capacidade,
+            tipo,
         } = sala;
 
-        setNomeSala(nomeSala);
-        setCapacidadeSala(capacidadeSala);
-        setTipoSala(tipoSala);
+        setNomeSala(nome);
+        setCapacidadeSala(capacidade);
+        setTipoSala(tipo);
 
     }
 
 
     useEffect(() => {
-        if (onEditar)
-            carregarDadosEditar(onEditar)
-    }, [onEditar])
+        async function fetchEditar() {
+            if (onEditar) {
+                const dados = await onEditar;
+                carregarDadosEditar(dados);
+            }
+        }
+
+        fetchEditar();
+    }, [onEditar]);
 
 
     return (
@@ -60,7 +66,7 @@ export function SalaForm({
                     id={"nome-sala"}
                     placeholder={"Digite o nome da sala"}
                     label={"Nome"}
-                    valor={nomeSala}
+                    valor={nome}
                     onChange={e => setNomeSala(e.target.value)} />
 
                 <Input
@@ -69,7 +75,7 @@ export function SalaForm({
                     id={"capacidade-sala"}
                     placeholder={"Digite a capacidade da sala"}
                     label={"Capacidade"}
-                    valor={capacidadeSala}
+                    valor={capacidade}
                     onChange={e => setCapacidadeSala(e.target.value)} />
 
                 <Select
@@ -77,6 +83,7 @@ export function SalaForm({
                     variant={"form-control"}
                     options={formatos}
                     label={"Tipo"}
+                    valor={tipo}
                     onChange={e => setTipoSala(e.target.value)} />
             </form>
         </>

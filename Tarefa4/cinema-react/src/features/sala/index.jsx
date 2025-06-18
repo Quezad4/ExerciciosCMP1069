@@ -3,8 +3,7 @@ import { SalaForm } from "./components/SalaForm";
 import { SalaTable } from "./components/SalaTable";
 import Button from "../../components/buttons/Button";
 import { Modal } from "../../components/modal/Modal";
-import { adicionarSala, alterarSalaEditado, excluirSalaServices, getSalaEditar } from "./services/storage";
-
+import { adicionarSala, alterarSalaEditado, excluirSalaServices, getSalaEditar, getSalas } from "./services/storage";
 
 export function CadastrarSala() {
 
@@ -35,28 +34,37 @@ export function CadastrarSala() {
     }
 
 
-    function handleSubmit(sala) {
-        setSalasTabela(adicionarSala(sala));
+    async function handleSubmit(sala) {
+        await adicionarSala(sala);
+        await carregarSalas();
         fecharModal();
     }
-    function handleSubmitEditar(sala){
-        setSalasTabela(alterarSalaEditado(sala,indexEditado));
-        fecharEditModal()
+    async function handleSubmitEditar(sala) {
+        await alterarSalaEditado(sala, indexEditado);
+        await carregarSalas();
+        fecharEditModal();
     }
 
-    function excluirSala(index){
-        setSalasTabela(excluirSalaServices(index))
+    async function excluirSala(id) {
+        await excluirSalaServices(id);
+        await carregarSalas();
     }
-    
-    function editarSala(index){
-        setSalaEditando(getSalaEditar(index));
-        setIndexEditado(index);
+
+    function editarSala(id) {
+        setSalaEditando(getSalaEditar(id));
+        setIndexEditado(id);
         abrirEditModal();
     }
 
+    const carregarSalas = async () => {
+        const lista = await getSalas();
+        setSalasTabela(lista);
+    }
+
     useEffect(() => {
-        setSalasTabela(JSON.parse(localStorage.getItem("salas")) || [])
-    }, [])
+        carregarSalas();
+    }, []);
+
 
     return (
         <>
@@ -80,9 +88,9 @@ export function CadastrarSala() {
                     fecharModal={fecharEditModal}
                     form={"sala-form"} />}
 
-                <SalaTable listaSalas={salasTabela} 
-                botaoExcluir={excluirSala}
-                botaoEditar={editarSala}/>
+                <SalaTable listaSalas={salasTabela}
+                    botaoExcluir={excluirSala}
+                    botaoEditar={editarSala} />
             </div>
         </>
     );

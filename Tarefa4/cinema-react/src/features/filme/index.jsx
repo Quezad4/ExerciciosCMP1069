@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { adicionarFilme, alterarFilmeEditado } from "./services/storage";
 import { excluirFilmeServices } from "./services/storage";
 import { getFilmeEditar } from "./services/storage";
+import { getFilmes } from "./services/storage";
 
 
 export function CadastrarFilme() {
@@ -36,29 +37,38 @@ export function CadastrarFilme() {
         setIsEditOpen(false);
     }
 
-    function handleSubmit(filme) {
-        setFilmesTabela(adicionarFilme(filme));
+    async function handleSubmit(filme) {
+        await adicionarFilme(filme)
+        await carregarFilmes();
         fecharModal();
     }
 
     function handleSubmitEditar(filme) {
-        setFilmesTabela(alterarFilmeEditado(filme, indexEditado));
+        alterarFilmeEditado(filme, indexEditado);
+        carregarFilmes();
         fecharEditModal();
     }
 
-    function excluirFilme(index) {
-        setFilmesTabela(excluirFilmeServices(index));
+    async function excluirFilme(id) {
+        await excluirFilmeServices(id);
+        await carregarFilmes();
     }
 
-    function editarFilme(index) {
-        setFilmeEditando(getFilmeEditar(index));
-        setIndexEditado(index)
+    function editarFilme(id) {
+        setFilmeEditando(getFilmeEditar(id));
+        setIndexEditado(id)
         abrirEditModal();
     }
 
+    async function carregarFilmes() {
+        const lista = await getFilmes();
+        setFilmesTabela(lista);
+    }
+
     useEffect(() => {
-        setFilmesTabela(JSON.parse(localStorage.getItem("filmes")) || [])
-    }, [])
+        carregarFilmes();
+    }, []);
+
 
     return (
         <>

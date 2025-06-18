@@ -23,15 +23,15 @@ export function SalaTable({
                 <tbody>
                     {listaSalas.map((sala, i) => {
                         
-                        const { nomeSala, capacidadeSala, tipoSala } = sala
+                        const { id, nome, capacidade, tipo } = sala
                         return (
                             <tr key={i} >
-                                <td> {i + 1} </td>
-                                <td> {nomeSala} </td>
-                                <td> {capacidadeSala} </td>
-                                <td> {tipoSala} </td>
-                                <td> <Button variant={"rounded bg-secondary text-white"} texto={"Editar"} onClick={() => botaoEditar(i)}/>
-                                    <Button variant={"rounded bg-danger text-white"} texto={"Excluir"}  onClick={() => botaoExcluir(i)}/> </td>
+                                <td> {id} </td>
+                                <td> {nome} </td>
+                                <td> {capacidade} </td>
+                                <td> {tipo} </td>
+                                <td> <Button variant={"rounded bg-secondary text-white"} texto={"Editar"} onClick={() => botaoEditar(id)}/>
+                                    <Button variant={"rounded bg-danger text-white"} texto={"Excluir"}  onClick={() => botaoExcluir(id)}/> </td>
                             </tr>
                         );
                     })}
